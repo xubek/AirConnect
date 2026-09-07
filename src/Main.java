@@ -1,37 +1,60 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
 
-        Flight f1 = new Flight(
+        ArrayList<Flight> flights = new ArrayList<>();
+
+        Flight torontoToVancouver = new Flight(
                 "AC102",
                 "Toronto",
                 "Vancouver",
                 120);
 
-        Flight f2 = new Flight(
+        Flight calgaryToMontreal = new Flight(
                 "AC225",
                 "Calgary",
                 "Montreal",
                 80
         );
 
-        Flight f3 = new Flight(
+        Flight ottawaToHalifax = new Flight(
                 "AC556",
                 "Ottawa",
                 "Halifax",
                 65
         );
 
-        f1.displayFlight();
-        System.out.println();
-        f2.displayFlight();
+        flights.add(new Flight(
+                "AC999",
+                "Edmonton",
+                "Toronto",
+                150
+            )
+        );
 
-        System.out.println();
-        f1.bookSeat();
-        f1.displayFlight();
+        flights.add(torontoToVancouver);
+        flights.add(calgaryToMontreal);
+        flights.add(ottawaToHalifax);
 
-        System.out.println();
-        f1.bookSeat();
-        f1.displayFlight();
-        System.out.println (f1.isFlightFull() );
+        for(Flight flight : flights){
+            flight.displayFlight();
+            System.out.println();
+        }
+
+
+        System.out.println("\nTotal Flights: " + flights.size());
+
+        for (Flight flight : flights){
+            System.out.println();
+            flight.bookSeat();
+            System.out.println("Seat available for flight "+ flight.getFlightNumber()+
+                                " From "+flight.getOrigin() +
+                                " to " + flight.getDestination() +
+                                " is: " + flight.getSeatAvailable());
+        }
+
+
+
     }
 }
