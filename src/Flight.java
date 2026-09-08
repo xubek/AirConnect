@@ -38,6 +38,7 @@ public class Flight {
     }
 
     public void bookSeat(){
+        System.out.println("\n------Booking Seats ------");
         if(seatAvailable > 0){
             seatAvailable --;
             System.out.println("Seat booked Sucessfully");
