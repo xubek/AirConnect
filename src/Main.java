@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -93,6 +94,85 @@ public class Main {
         System.out.println("Passenger:" + passenger1.getPassengerName());
         System.out.println("Flight: " + calgaryToMontreal.getFlightNumber());
         System.out.println("Route: " + calgaryToMontreal.getOrigin() + " -> " + calgaryToMontreal.getDestination());
+
+
+        System.out.println("=====================================");
+        System.out.println("       Welcome to AirConnect");
+        System.out.println("=====================================");
+        System.out.println("1. View Flight");
+        System.out.println("2. Search Flight");
+        System.out.println("3. View Passengers");
+        System.out.println("4. Book Passenger");
+        System.out.println("5. Exit");
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nEnter your choice:");
+        int choice = scanner.nextInt();
+
+        switch(choice){
+
+            case 1:
+                for(Flight flight : flights) {
+                    flight.displayFlight();
+                }
+                break;
+
+            case 2:
+                scanner.nextLine(); //clear buffer
+                System.out.println("Enter Flight Number: ");
+                String searchTheFlight = scanner.nextLine();
+                boolean find = false;
+
+                for(Flight flight : flights){
+
+                    if(flight.getFlightNumber().equals(searchTheFlight)){
+                        System.out.println("Flight Found");
+                        flight.displayFlight();
+                        find = true;
+                        break;
+                    }
+                }
+                if(!find){
+                    System.out.println("Flight not Found");
+                }
+                break;
+
+            case 3:
+                for(Passenger passenger : passengers){
+                    passenger.displayPassenger();
+                }
+                break;
+
+            case 4:
+                scanner.nextLine();
+                System.out.print("Enter Flight Number: ");
+                String passengerFlightNumber = scanner.nextLine();
+                boolean foundFlight = false;
+                for(Flight flight : flights){
+                    if(flight.getFlightNumber().equals(passengerFlightNumber)){
+                        flight.bookSeat();
+                        foundFlight = true;
+                        break;
+                    }
+                }
+                if(!foundFlight){
+                    System.out.println("Flight Not Found");
+                }
+                break;
+
+            case 5:
+                System.out.println("Thank you for using AirConnect");
+                break;
+
+            default:
+                System.out.println("Invalid input!");
+                break;
+
+
+        }
+
+
+
 
 
 
