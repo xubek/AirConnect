@@ -48,7 +48,7 @@ public class Main {
         System.out.println("Total Flights: " + flights.size());
 
         for (Flight flight : flights){
-            flight.bookSeat();
+           // flight.bookSeat();
             System.out.println("Seat available for flight "+ flight.getFlightNumber()+
                                 " From "+flight.getOrigin() +
                                 " to " + flight.getDestination() +
@@ -145,12 +145,28 @@ public class Main {
 
             case 4:
                 scanner.nextLine();
+
+                System.out.print("Enter Passenger Name: ");
+                String passengerName = scanner.nextLine();
                 System.out.print("Enter Flight Number: ");
                 String passengerFlightNumber = scanner.nextLine();
+
+                Passenger bookedPassenger = null;
+                for(Passenger passenger : passengers){
+                    if(passenger.getPassengerName().equals(passengerName)){
+                        bookedPassenger = passenger;
+                        break;
+                    }
+                }
+                if(bookedPassenger == null){
+                    System.out.println("Passenger Not Found");
+                    break;
+                }
+
                 boolean foundFlight = false;
                 for(Flight flight : flights){
                     if(flight.getFlightNumber().equals(passengerFlightNumber)){
-                        flight.bookSeat();
+                        flight.bookSeat(bookedPassenger);
                         foundFlight = true;
                         break;
                     }
