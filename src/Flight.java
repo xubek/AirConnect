@@ -52,7 +52,6 @@ public class Flight {
             System.out.println("Sorry, flight is full");
         }
     }
-
     public void addPassenger(Passenger passenger){
         passengers.add(passenger);
     }
