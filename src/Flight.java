@@ -35,7 +35,22 @@ public class Flight {
     }
 
     public ArrayList<Passenger> getPassenger(){
+
         return passengers;
+    }
+
+
+    public int getBookedPassengerCount(){
+        return passengers.size();
+    }
+
+
+    public void displaySummary(){
+        System.out.println("\n------ Flight Summary ------");
+        System.out.println("Flight Number: " + getFlightNumber());
+        System.out.println("Route: " + getOrigin() + "->" + getDestination());
+        System.out.println("Seats Remaining:" + getSeatAvailable());
+        System.out.println("Passengers Booked: " + getBookedPassengerCount());
     }
 
 
@@ -84,4 +99,7 @@ public class Flight {
         else
             return false;
     }
+
+
+
 }

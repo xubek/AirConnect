@@ -95,6 +95,25 @@ public class Main {
 
     }
 
+    public static void viewFlightSummary(ArrayList<Flight> flights, Scanner scanner){
+        scanner.nextLine();
+
+        System.out.println("Enter the Flight Number");
+        String flightNumber = scanner.nextLine();
+        boolean foundFlight = false;
+
+        for(Flight flight : flights){
+            if(flight.getFlightNumber().equals(flightNumber)){
+                foundFlight = true;
+                flight.displayFlight();
+                break;
+            }
+        }
+        if(!foundFlight){
+            System.out.println("Flight Not Found");
+        }
+    }
+
     public static void main(String[] args) {
 
         ArrayList<Flight> flights = new ArrayList<>();
@@ -148,7 +167,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
-        while(choice != 6) {
+        while(choice != 7) {
             System.out.println("\n=====================================");
             System.out.println("       Welcome to AirConnect");
             System.out.println("=====================================");
@@ -158,6 +177,7 @@ public class Main {
             System.out.println("4. Book Passenger");
             System.out.println("5. view passengers on the flight");
             System.out.println("6. Exit");
+            System.out.println("7. View Passenger Summary");
             System.out.print("\nEnter your choice: ");
             choice = scanner.nextInt();
 
@@ -185,6 +205,10 @@ public class Main {
 
                 case 6:
                     System.out.println("Thank you for using AirConnect");
+                    break;
+
+                case 7:
+                    viewFlightSummary(flights, scanner);
                     break;
 
                 default:
