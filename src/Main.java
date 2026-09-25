@@ -68,6 +68,33 @@ public class Main {
         }
     }
 
+    public static void viewBookedPassenger(ArrayList<Flight> flights, Scanner scanner){
+        scanner.nextLine();
+        System.out.print("Enter the flight number: ");
+        String flightNum = scanner.nextLine();
+        boolean foundFlight = false;
+        for(Flight flight: flights){
+            if(flight.getFlightNumber().equals(flightNum)){
+
+                if(flight.getPassenger().isEmpty()){
+                    System.out.println("No Paasengers have booked this flight yet");
+                }else {
+                    System.out.println("\n------ Passengers on Flight " + flightNum + "------");
+
+                    for (Passenger passenger : flight.getPassenger()) {
+                        passenger.displayPassenger();
+                    }
+                }
+                foundFlight = true;
+                break;
+            }
+        }
+        if(!foundFlight){
+            System.out.println("Flight Not Found");
+        }
+
+    }
+
     public static void main(String[] args) {
 
         ArrayList<Flight> flights = new ArrayList<>();
@@ -121,15 +148,16 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
-        while(choice != 5) {
-            System.out.println("=====================================");
+        while(choice != 6) {
+            System.out.println("\n=====================================");
             System.out.println("       Welcome to AirConnect");
             System.out.println("=====================================");
-            System.out.println("1. View Flight");
+            System.out.println("\n1. View Flight");
             System.out.println("2. Search Flight");
             System.out.println("3. View Passengers");
             System.out.println("4. Book Passenger");
-            System.out.println("5. Exit");
+            System.out.println("5. view passengers on the flight");
+            System.out.println("6. Exit");
             System.out.print("\nEnter your choice: ");
             choice = scanner.nextInt();
 
@@ -152,6 +180,10 @@ public class Main {
                     break;
 
                 case 5:
+                    viewBookedPassenger(flights, scanner);
+                    break;
+
+                case 6:
                     System.out.println("Thank you for using AirConnect");
                     break;
 

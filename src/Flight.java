@@ -34,6 +34,10 @@ public class Flight {
         return seatAvailable;
     }
 
+    public ArrayList<Passenger> getPassenger(){
+        return passengers;
+    }
+
 
     public void displayFlight(){
         System.out.println("Flight Number: " + flightNumber);
@@ -43,7 +47,13 @@ public class Flight {
     }
 
     public void bookSeat(Passenger passenger){
+
         System.out.println("\n------Booking Seats ------");
+
+        if(hasPassenger(passenger)){
+            System.out.println("Passenger is already booked on this flight.");
+            return;
+        }
         if(seatAvailable > 0){
             seatAvailable --;
             addPassenger(passenger);
@@ -53,7 +63,19 @@ public class Flight {
         }
     }
     public void addPassenger(Passenger passenger){
+
         passengers.add(passenger);
+    }
+
+    public boolean hasPassenger(Passenger passenger){
+
+        for(Passenger bookedPassenger: passengers){
+
+            if(bookedPassenger.getPassengerName().equals(passenger.getPassengerName())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isFlightFull(){
